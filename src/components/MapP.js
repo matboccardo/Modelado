@@ -2,18 +2,18 @@ import React, { useEffect,useMemo } from 'react';
 import { getPoints } from '../helpers/helper';
 const functionPlot = require("function-plot");
 
-const Map = ({points, pValue, qValue}) => {
+const MapP = ({points, pValue, qValue}) => {
     // puntos que construyen la function de la trayectorias
     const pointsTrajectoryFunction = useMemo(() => getPoints(pValue,qValue) ,[qValue, pValue]);
     const options = useMemo(() => ({
-        title: 'Diagrama p vs q',
+        title: 'Diagrama p vs k',
         yAxis: { domain: [-5, 5] },
-        width: 900,
-        height: 400,
+        width: 450,
+        height: 200,
         grid: true,
         data: [
             {
-                fn: "x^2/4",
+                fn: pValue,
             },
             {
                 points: pointsTrajectoryFunction,
@@ -29,7 +29,7 @@ const Map = ({points, pValue, qValue}) => {
     }),[pointsTrajectoryFunction]);
 
     useEffect(() => {
-        options.target = document.querySelector("#map");
+        options.target = document.querySelector("#mapp");
         options.data[2] = {
             points: points.length > 0 ? [points] : [0,0],
             fnType: 'points',
@@ -43,8 +43,9 @@ const Map = ({points, pValue, qValue}) => {
     },[points,options]);
 
     return (
-        <div id="map"/>
+        
+        <div id="mapp"/>
     );
 };
 
-export default Map;
+export default MapP;
