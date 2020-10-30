@@ -5,6 +5,7 @@ import PhaseDiagram from './components/PhaseDiagram';
 import Map from './components/Map';
 import { AppBar, Toolbar, Typography, makeStyles, TextField, Button, Grid  } from '@material-ui/core';
 const nerdamer = require('nerdamer/all');
+var algebrite = require('algebrite');
 
 window.d3 = d3;
 
@@ -30,8 +31,14 @@ function App() {
   const [pValue, setP] = React.useState(null);
   const [qValue, setQ] = React.useState(null);
   const calculateFunction = () => {
-    const p = nerdamer(`simplify(-((${values.inputA}) + (${values.inputD})))`);
-    const q = nerdamer(`simplify((${values.inputA}) * (${values.inputD}) - (${values.inputB}) * (${values.inputC}))`); 
+    //const p = nerdamer(`simplify(-((${values.inputA}) + (${values.inputD})))`);
+    //const q = nerdamer(`simplify((${values.inputA}) * (${values.inputD}) - (${values.inputB}) * (${values.inputC}))`); 
+    //TRAZA DE LA MATRIZ
+    const p = algebrite.simplify(values.inputA.toString() + '+' + values.inputD.toString()).toString();
+    //DETERMINANTE DE LA MATRIZ
+    let matriz = '[[' + values.inputA + ',' + values.inputB + '],[' + values.inputC + ',' + values.inputD + ']]';
+    const q = algebrite.det(matriz).toString();
+
     setQ(q);
     setP(p);
     setFunc(nerdamer(`${q}-((${p})^2)/4`));
