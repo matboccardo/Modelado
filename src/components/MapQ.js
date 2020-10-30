@@ -30,15 +30,15 @@ const MapQ = ({points, pValue, qValue}) => {
 
     useEffect(() => {
         options.target = document.querySelector("#mapq");
-        options.data[2] = {
-            points: points.length > 0 ? [points] : [0,0],
-            fnType: 'points',
-            graphType: 'scatter',
-            color: 'red',
-            attr: {
-                r: 3,
-            },
-        };
+        // options.data[2] = {
+        //     points: points.length > 0 ? [points] : [0,0],
+        //     fnType: 'points',
+        //     graphType: 'scatter',
+        //     color: 'red',
+        //     attr: {
+        //         r: 3,
+        //     },
+        // };
         functionPlot(options);
     },[points,options]);
 

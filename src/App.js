@@ -44,14 +44,14 @@ function App() {
     const q = algebrite.det(matriz).toString();
 
     const regExp = /[a-z|A-Z]/;
-
+    
     if(regExp.test(q)){
-      let qk = q.replace('k', 'x');
+      let qk = q.replace('a', 'x');
       setqKValue(qk);
       setFuncQvsK(qk.toString());
     }
     if(regExp.test(p)){
-      let pk = p.replace('k', 'x');
+      let pk = p.replace('a', 'x');
       setpKValue(pk);
       setFuncPvsK(pk.toString());
     }
@@ -66,8 +66,8 @@ function App() {
   const [values, setValues] = useState(
     {
       inputA: '2',
-      inputB: 'k',
-      inputC: 'k',
+      inputB: 'a',
+      inputC: 'a',
       inputD: '2',
     },
   );
