@@ -6,7 +6,7 @@ const MapP = ({points, pValue, qValue}) => {
     // puntos que construyen la function de la trayectorias
     const pointsTrajectoryFunction = useMemo(() => getPoints(pValue,qValue) ,[qValue, pValue]);
     const options = useMemo(() => ({
-        title: 'Diagrama p vs k',
+        title: 'Diagrama p vs a',
         yAxis: { domain: [-5, 5] },
         width: 450,
         height: 200,

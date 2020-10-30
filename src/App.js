@@ -45,6 +45,10 @@ function App() {
 
     const regExp = /[a-z|A-Z]/;
     
+    setqKValue(null);
+    setpKValue(null);
+    setFuncQvsK(null);
+    setFuncPvsK(null);
     if(regExp.test(q)){
       let qk = q.replace('a', 'x');
       setqKValue(qk);
@@ -57,18 +61,18 @@ function App() {
     }
     setQ(q);
     setP(p);
-    //setFunc(nerdamer(`${q}-((${p})^2)/4`));
-    setFunc(nerdamer(q));
+    setFunc(nerdamer(`${q}-((${p})^2)/4`));
+    //setFunc(nerdamer(q));
     
     
   }
 
   const [values, setValues] = useState(
     {
-      inputA: '2',
+      inputA: '1',
       inputB: 'a',
-      inputC: 'a',
-      inputD: '2',
+      inputC: '2',
+      inputD: 'a',
     },
   );
 
@@ -161,7 +165,7 @@ function App() {
           <Grid item xs={6}>
             {funcPvsK && <MapP
               points={points}
-              qValue={qValue}
+              qValue={qkValue}
               pValue={pkValue}
             />}
           </Grid>
