@@ -68,7 +68,7 @@ const PhaseDiagram = ({
       return functionPlot({
         title: 'Diagrama de fases',
         target: document.querySelector("#phase-diagram"),
-        width: 900,
+        width: 800,
         height: 400,
         yAxis: { domain: [-5, 5] },
         tip: {

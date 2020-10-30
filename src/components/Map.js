@@ -8,7 +8,7 @@ const Map = ({points, pValue, qValue}) => {
     const options = useMemo(() => ({
         title: 'Diagrama p vs q',
         yAxis: { domain: [-5, 5] },
-        width: 900,
+        width: 800,
         height: 400,
         grid: true,
         data: [

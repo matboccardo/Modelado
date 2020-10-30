@@ -44,17 +44,17 @@ function App() {
     const q = algebrite.det(matriz).toString();
 
     const regExp = /[a-z|A-Z]/;
-    
+
     setqKValue(null);
     setpKValue(null);
     setFuncQvsK(null);
     setFuncPvsK(null);
-    if(regExp.test(q)){
+    if (regExp.test(q)) {
       let qk = q.replace('a', 'x');
       setqKValue(qk);
       setFuncQvsK(qk.toString());
     }
-    if(regExp.test(p)){
+    if (regExp.test(p)) {
       let pk = p.replace('a', 'x');
       setpKValue(pk);
       setFuncPvsK(pk.toString());
@@ -63,8 +63,8 @@ function App() {
     setP(p);
     setFunc(nerdamer(`${q}-((${p})^2)/4`));
     //setFunc(nerdamer(q));
-    
-    
+
+
   }
 
   const [values, setValues] = useState(
@@ -147,8 +147,8 @@ function App() {
             </>
           }
         </Grid>
-        <Grid container>
-          <Grid item xs={6}>
+        <Grid container xs={12}>
+          <Grid xs={6}>
             {func && <Map
               points={points}
               qValue={qValue}
@@ -156,6 +156,14 @@ function App() {
             />}
           </Grid>
           <Grid item xs={6}>
+            <PhaseDiagram
+              handleSetPoints={setPoints}
+              func={func}
+              pValue={pValue}
+              qValue={qValue}
+            />
+          </Grid>
+          <Grid xs={6}>
             {funcQvsK && <MapQ
               points={points}
               qValue={qkValue}
@@ -168,14 +176,6 @@ function App() {
               qValue={qkValue}
               pValue={pkValue}
             />}
-          </Grid>
-          <Grid item xs={6}>
-            <PhaseDiagram
-              handleSetPoints={setPoints}
-              func={func}
-              pValue={pValue}
-              qValue={qValue}
-            />
           </Grid>
         </Grid>
 
