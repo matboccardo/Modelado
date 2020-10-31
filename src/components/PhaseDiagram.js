@@ -106,7 +106,7 @@ const PhaseDiagram = ({
     <div id='phase-diagram'>
       <div className='guide-container'>
         {trajectoryTypes.map(x =>
-          <div id={x.id} key={x.id} className={activeClassId === x.id && 'active'}>{x.text}</div>
+          <div id={x.id} key={x.id} className={activeClassId === x.id ? 'active' : undefined}>{x.text}</div>
         )}
       </div>
     </div>
