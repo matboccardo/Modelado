@@ -4,7 +4,7 @@ import PhaseDiagram from './PhaseDiagram';
 import Map from './Map';
 import MapQ from './MapQ';
 import MapP from './MapP';
-import { AppBar, Toolbar, Typography, makeStyles, TextField, Button, Grid } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, makeStyles, TextField, Button, Grid, GridListTile, GridList } from '@material-ui/core';
 const nerdamer = require('nerdamer/all');
 const algebrite = require('algebrite');
 
@@ -35,6 +35,7 @@ export const Home = () => {
   const [pkValue, setpKValue] = useState(null);
   const [pValue, setP] = useState(null);
   const [qValue, setQ] = useState(null);
+  const [showMatriz, setShowMatriz] = useState(false);
 
   function calculateFunction() {
     //TRAZA DE LA MATRIZ
@@ -80,24 +81,28 @@ export const Home = () => {
   };
 
   return (
-    <div className={classes.root} id="app">
-      <AppBar position="static" className={classes.appBar}>
+    <React.Fragment>
+      <AppBar position="static" style={{ backgroundColor: 'black' }}>
         <Toolbar>
           <Typography variant="h4" className={classes.title}>
             Sistemas 2D Lineales con escenarios
           </Typography>
-          <Button onClick={() => calculateFunction()} variant="contained">Calcular</Button>
+          <GridList cellHeight={50} className={classes.gridList} cols={2} >
+            <GridListTile>
+              <Button onClick={() => setShowMatriz(!showMatriz)} variant="contained" color="secondary">Ingresar matriz</Button>
+            </GridListTile>
+            <GridListTile>
+              <Button onClick={() => calculateFunction()} variant="contained" color="secondary">Calcular sistema</Button>
+            </GridListTile>
+          </GridList>
         </Toolbar>
       </AppBar>
       <Grid container justify="center">
-        <Grid item xs={3}>
-          <div style={{ display: 'inline-block', fontSize: '128px' }}>A=(</div>
-        </Grid>
-        <Grid container item xs={4}>
+        {showMatriz && <Grid container item xs={4}>
           <Grid item xs={6}>
             <TextField
               name="inputA"
-              label="a"
+              label="Componente a"
               value={values.inputA}
               onChange={handleChange('inputA')}
               margin="normal"
@@ -106,7 +111,7 @@ export const Home = () => {
           <Grid item xs={6}>
             <TextField
               name="inputB"
-              label="b"
+              label="Componente b"
               value={values.inputB}
               onChange={handleChange('inputB')}
               margin="normal"
@@ -115,7 +120,7 @@ export const Home = () => {
           <Grid item xs={6}>
             <TextField
               name="inputC"
-              label="c"
+              label="Componente c"
               value={values.inputC}
               onChange={handleChange('inputC')}
               margin="normal"
@@ -124,29 +129,27 @@ export const Home = () => {
           <Grid item xs={6}>
             <TextField
               name="inputD"
-              label="d"
+              label="Componente d"
               value={values.inputD}
               onChange={handleChange('inputD')}
               margin="normal"
             />
           </Grid>
-        </Grid>
-        <Grid item xs={1}>
-          <div style={{ display: 'inline-block', fontSize: '128px' }}>)</div>
-        </Grid>
-        <Grid container item xs={4}>
           {func &&
             <>
               <Grid item xs={12}>
-                <Typography variant="h5">{`q = ${qValue}`}</Typography>
+                <Typography variant="h5">{`q(Det(A)) = ${qValue}`}</Typography>
               </Grid>
               <Grid item xs={12}>
-                <Typography variant="h5">{`p = ${pValue}`}</Typography>
+                <Typography variant="h5">{`p(Traza(A)) = ${pValue}`}</Typography>
               </Grid>
             </>
           }
         </Grid>
-        <Grid container item xs={12}>
+        }
+      </Grid>
+      <Grid container justify="center">
+        <Grid container item xs={12} style={{ backgroundColor: "grey" }}>
           <Grid item xs={6}>
             {func && <Map
               points={points}
@@ -179,6 +182,6 @@ export const Home = () => {
         </Grid>
 
       </Grid>
-    </div>
+    </React.Fragment>
   );
 }

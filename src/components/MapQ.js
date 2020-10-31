@@ -1,10 +1,10 @@
-import React, { useEffect,useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { getPoints } from '../helpers/helper';
 const functionPlot = require("function-plot");
 
-const MapQ = ({points, pValue, qValue}) => {
+const MapQ = ({ points, pValue, qValue }) => {
     // puntos que construyen la function de la trayectorias
-    const pointsTrajectoryFunction = useMemo(() => getPoints(pValue,qValue) ,[qValue, pValue]);
+    const pointsTrajectoryFunction = useMemo(() => getPoints(pValue, qValue), [qValue, pValue]);
     const options = useMemo(() => ({
         title: 'Diagrama q vs a',
         yAxis: { domain: [-5, 5] },
@@ -14,6 +14,7 @@ const MapQ = ({points, pValue, qValue}) => {
         data: [
             {
                 fn: qValue,
+                color: 'blue'
             },
             {
                 points: pointsTrajectoryFunction,
@@ -21,12 +22,12 @@ const MapQ = ({points, pValue, qValue}) => {
                 graphType: 'polyline',
             },
             {
-                points: [0,0],
+                points: [0, 0],
                 fnType: 'points',
                 graphType: 'scatter',
             }
         ]
-    }),[pointsTrajectoryFunction]);
+    }), [pointsTrajectoryFunction]);
 
     useEffect(() => {
         options.target = document.querySelector("#mapq");
@@ -40,11 +41,11 @@ const MapQ = ({points, pValue, qValue}) => {
         //     },
         // };
         functionPlot(options);
-    },[points,options]);
+    }, [points, options]);
 
     return (
-        
-        <div id="mapq"/>
+
+        <div id="mapq" />
     );
 };
 

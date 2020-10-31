@@ -70,7 +70,7 @@ const PhaseDiagram = ({
         target: document.querySelector("#phase-diagram"),
         width: 800,
         height: 400,
-        yAxis: { domain: [-5, 5] },
+        yAxis: { domain: [-4, 4] },
         tip: {
           renderer: renderUpdate,
         },
