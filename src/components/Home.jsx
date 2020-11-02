@@ -149,7 +149,7 @@ export const Home = () => {
         }
       </Grid>
       <Grid container justify="center">
-        <Grid container item xs={12} style={{ backgroundColor: "grey" }}>
+        <Grid container item xs={12}  >
           <Grid item xs={6}>
             {func && <Map
               points={points}
