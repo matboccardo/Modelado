@@ -41,8 +41,6 @@ body {
   stroke: #000;
 }
 
-.rules .tick {
-}
 .rules .minor {
   stroke: #BBB;
 }
