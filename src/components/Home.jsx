@@ -85,7 +85,7 @@ export const Home = () => {
       <AppBar position="static" style={{ backgroundColor: 'black' }}>
         <Toolbar>
           <Typography variant="h4" className={classes.title}>
-            Sistemas 2D Lineales con escenarios
+            Sistemas 2D Lineales
           </Typography>
           <GridList cellHeight={50} className={classes.gridList} cols={2} >
             <GridListTile>
